@@ -20,6 +20,7 @@ namespace Nume_Pren_Lab12.Data
         {
             return restService.RefreshDataAsync();
         }
+        // de creat o metoda similara pentru tabelul Sales
 
         
         public Task SaveShopListAsync(ShopList item, bool isNewItem = true)

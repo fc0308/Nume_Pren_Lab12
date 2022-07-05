@@ -13,7 +13,7 @@ namespace Nume_Pren_Lab12.Data
     {
         HttpClient client;
         
-        string RestUrl = "https://192.168.0.11:45455/api/shoplists/{0}";
+        string RestUrl = "https://192.168.100.8:45456/api/shoplists";
         public List<ShopList> Items { get; private set; }
 
         public RestService()

@@ -15,7 +15,7 @@ namespace Nume_Pren_Lab12
         {
             Database = new ShoppingListDatabase(new RestService());
 
-            MainPage = new NavigationPage(new ListEntryPage());
+            MainPage = new NavigationPage(new ChartPage());
         }
 
         protected override void OnStart()
