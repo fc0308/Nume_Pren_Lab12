@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,21 +22,48 @@ namespace Nume_Pren_Lab12
             InitializeComponent();
 
         }
-        protected override async void OnAppearing()
-        {
-            Microcharts.ChartEntry[] data;
+        protected override async void OnAppearing() 
+        {   
+            
             base.OnAppearing();
-            data=PopulateChart();
-            //dupa ce faceti metoda care interogheaza db apelati in loc de PopulateChart metoda PopulateChartfromDB
-            var chart = new LineChart { Entries = data };
+           var data = PopulateChartfromDB();
+           var entries = Array.Empty<ChartEntry>();
+
+
+         
+            foreach (var CurrentData in await data)
+            {
+                var random = new Random();
+                var color = String.Format("#{0:X6}" + random.Next(0x1000000));
+
+                 entries =new[]
+                {
+                new ChartEntry(CurrentData.Value)
+                {
+                    Label = CurrentData.Month,
+                    ValueLabel = CurrentData.Value.ToString(),
+                    Color = SKColor.Parse(color)
+                    }
+                };
+            }    
+            
+            var chart = new BarChart {Entries =entries,
+                
+                ValueLabelOrientation = Orientation.Horizontal,
+                LabelOrientation = Orientation.Horizontal,
+                
+                LabelTextSize = 30,
+                BackgroundColor =033067
+
+            };
             chartView.Chart = chart;
 
 
         }
 
-        async Task<List<ShopList>> PopulateChartfromDB()
+        async Task<List<Sales>> PopulateChartfromDB()
         {
-            var entries = await App.Database.GetShopListsAsync(); //- modificam numele meyodei ce cea nou creata
+            var entries = await App.Database.GetSalesAsync(); //- modificam numele meyodei ce cea nou creata
             return entries;
             
         }
@@ -46,30 +74,78 @@ namespace Nume_Pren_Lab12
             
           var entries = new[]
  {
-     new ChartEntry(212)
+     new ChartEntry(20)
     {
-        Label = "UWP",
-        ValueLabel = "112",
-        Color = SKColor.Parse("#2c3e50")
-    },
-    new ChartEntry(248)
-    {
-        Label = "Android",
-        ValueLabel = "648",
+        Label = "Ian",
+        ValueLabel = "20",
         Color = SKColor.Parse("#77d065")
     },
-    new ChartEntry(128)
+    new ChartEntry(26)
     {
-        Label = "iOS",
-        ValueLabel = "428",
-        Color = SKColor.Parse("#b455b6")
+        Label = "Feb",
+        ValueLabel = "26",
+        Color = SKColor.Parse("#77d065")
     },
-    new ChartEntry(514)
+    new ChartEntry(28)
     {
-        Label = "Forms",
-        ValueLabel = "214",
-        Color = SKColor.Parse("#3498db")
-    }
+        Label = "Mar",
+        ValueLabel = "28",
+        Color = SKColor.Parse("#77d065")
+    },
+    new ChartEntry(32)
+    {
+        Label = "Apr",
+        ValueLabel = "32",
+        Color = SKColor.Parse("#77d065")
+    },
+    new ChartEntry(35)
+    {
+        Label = "May",
+        ValueLabel = "35",
+        Color = SKColor.Parse("#77d065")
+    },
+    new ChartEntry(40)
+    {
+        Label = "Jun",
+        ValueLabel = "40",
+        Color = SKColor.Parse("#77d065")
+    },
+     new ChartEntry(41)
+    {
+        Label = "Jul",
+        ValueLabel = "41",
+        Color = SKColor.Parse("#77d065")
+    },
+      new ChartEntry(36)
+    {
+        Label = "Aug",
+        ValueLabel = "36",
+        Color = SKColor.Parse("#C70039")
+    },
+       new ChartEntry(30)
+    {
+        Label = "Sep",
+        ValueLabel = "30",
+        Color = SKColor.Parse("#C70039")
+    },
+        new ChartEntry(45)
+    {
+        Label = "Oct",
+        ValueLabel = "45",
+        Color = SKColor.Parse("#77d065")
+    },
+        new ChartEntry(47)
+    {
+        Label = "Nov",
+        ValueLabel = "47",
+        Color = SKColor.Parse("#77d065")
+    },
+        new ChartEntry(49)
+    {
+        Label = "Dec",
+        ValueLabel = "49",
+        Color = SKColor.Parse("#77d065")
+    },
 
       }; 
             return entries;

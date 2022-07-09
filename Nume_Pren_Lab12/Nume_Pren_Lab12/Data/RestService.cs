@@ -13,9 +13,10 @@ namespace Nume_Pren_Lab12.Data
     {
         HttpClient client;
         
-        string RestUrl = "https://192.168.100.8:45456/api/shoplists";
+        string RestUrl = "https://192.168.100.8:45457/api/sales";
         public List<ShopList> Items { get; private set; }
 
+        public List<Sales> ChartItems { get; private set; }
         public RestService()
 
         {
@@ -30,7 +31,29 @@ namespace Nume_Pren_Lab12.Data
 
         }
 
-        public async Task<List<ShopList>> RefreshDataAsync()
+        public async Task<List<Sales>> RefreshDataChartAsync()
+        {
+            ChartItems = new List<Sales>();
+
+            Uri uri = new Uri(string.Format(RestUrl, string.Empty));
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    ChartItems = JsonConvert.DeserializeObject<List<Sales>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return ChartItems;
+        }
+
+    /*    public async Task<List<ShopList>> RefreshDataAsync()
         {
             Items = new List<ShopList>();
 
@@ -102,5 +125,6 @@ namespace Nume_Pren_Lab12.Data
                 Console.WriteLine(@"\tERROR {0}", ex.Message);
             }
         }
+    */
     }
 }

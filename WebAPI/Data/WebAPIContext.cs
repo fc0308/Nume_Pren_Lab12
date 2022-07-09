@@ -15,5 +15,6 @@ namespace WebAPI.Data
         }
 
         public DbSet<WebAPI.Models.ShopList> ShopList { get; set; }
+        public DbSet<WebAPI.Models.Sales> Sales { get; set; }
     }
 }

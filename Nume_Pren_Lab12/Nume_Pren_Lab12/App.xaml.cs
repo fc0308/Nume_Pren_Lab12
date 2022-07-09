@@ -14,7 +14,8 @@ namespace Nume_Pren_Lab12
         public App()
         {
             Database = new ShoppingListDatabase(new RestService());
-
+           
+           // MainPage = new NavigationPage(new Page1());
             MainPage = new NavigationPage(new ChartPage());
         }
 
