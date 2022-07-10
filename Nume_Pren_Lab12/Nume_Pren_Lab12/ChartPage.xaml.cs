@@ -26,47 +26,54 @@ namespace Nume_Pren_Lab12
         {   
             
             base.OnAppearing();
-           var data = PopulateChartfromDB();
-           var entries = new List<ChartEntry>();
-           var random = new Random();
-           var color = "#77d065";
+            var data = PopulateChartfromDB();
 
+        
 
-            foreach (var CurrentData in await data)
-            {
-                
-                entries.Add(new ChartEntry(CurrentData.Value)
-                {
-                    Label = CurrentData.Month,
-                    ValueLabel = CurrentData.Value.ToString(),
-                    Color = SKColor.Parse(color)
-                
-                });
+              var chart = new BarChart {Entries =await data,
+
+                   ValueLabelOrientation = Orientation.Horizontal,
+                   LabelOrientation = Orientation.Horizontal,
+
+                   LabelTextSize = 30,
+                   BackgroundColor =033067
+
+               };
+               chartView.Chart = chart;
+
                
-            }    
-            
-            var chart = new BarChart {Entries =entries,
-                
-                ValueLabelOrientation = Orientation.Horizontal,
-                LabelOrientation = Orientation.Horizontal,
-                
-                LabelTextSize = 30,
-                BackgroundColor =033067
-
-            };
-            chartView.Chart = chart;
-
-
         }
 
-        async Task<List<Sales>> PopulateChartfromDB()
+      
+
+        async Task<List<ChartEntry>> PopulateChartfromDB()
         {
-            var entries = await App.Database.GetSalesAsync(); 
-            return entries;
-            
+            var data =await App.Database.GetSalesAsync();
+          
+             var entries = new List<ChartEntry>();
+             var random = new Random();
+             var color = "#77d065";
+
+
+             foreach (var CurrentData in data)
+             {
+
+                 entries.Add(new ChartEntry(26)
+                 {
+                     Label = CurrentData.Month,
+                     ValueLabel = CurrentData.Value.ToString(),
+                     Color = SKColor.Parse(color)
+
+                 });
+              
+
+             }
+
+             return entries; 
+
         }
 
-        Microcharts.ChartEntry[] PopulateChart()
+   /*     Microcharts.ChartEntry[] PopulateChart()
         {
                       
             
@@ -150,7 +157,7 @@ namespace Nume_Pren_Lab12
 
         }
        
-
+*/
 
     }
     }
