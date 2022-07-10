@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Nume_Pren_Lab12": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

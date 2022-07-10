@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,43 +14,29 @@ using SkiaSharp;
 namespace Nume_Pren_Lab12
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ChartPage : ContentPage
+    public partial class BarChartPage : ContentPage
     {
-        public ChartPage()
+        public BarChartPage()
         {
             InitializeComponent();
-
         }
-        protected override async void OnAppearing() 
-        {   
-            
+
+        protected override async void OnAppearing()
+        {
+
             base.OnAppearing();
-           var data = PopulateChartfromDB();
-           var entries = new List<ChartEntry>();
-           var random = new Random();
-           var color = "#77d065";
-
-
-            foreach (var CurrentData in await data)
-            {
-                
-                entries.Add(new ChartEntry(CurrentData.Value)
-                {
-                    Label = CurrentData.Month,
-                    ValueLabel = CurrentData.Value.ToString(),
-                    Color = SKColor.Parse(color)
-                
-                });
-               
-            }    
+            var data = PopulateChart();
             
-            var chart = new BarChart {Entries =entries,
-                
+
+            var chart = new BarChart
+            {
+                Entries = data,
+
                 ValueLabelOrientation = Orientation.Horizontal,
                 LabelOrientation = Orientation.Horizontal,
-                
+
                 LabelTextSize = 30,
-                BackgroundColor =033067
+                BackgroundColor = 033067
 
             };
             chartView.Chart = chart;
@@ -59,19 +44,13 @@ namespace Nume_Pren_Lab12
 
         }
 
-        async Task<List<Sales>> PopulateChartfromDB()
-        {
-            var entries = await App.Database.GetSalesAsync(); 
-            return entries;
-            
-        }
-
+        
         Microcharts.ChartEntry[] PopulateChart()
         {
-                      
-            
-          var entries = new[]
- {
+
+
+            var entries = new[]
+   {
      new ChartEntry(20)
     {
         Label = "Ian",
@@ -145,12 +124,9 @@ namespace Nume_Pren_Lab12
         Color = SKColor.Parse("#77d065")
     },
 
-      }; 
+      };
             return entries;
 
         }
-       
-
-
     }
-    }
+}

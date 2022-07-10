@@ -14,11 +14,13 @@
   <ItemGroup>
     <Compile Remove="ListEntryPage.xaml.cs" />
     <Compile Remove="ListPage.xaml.cs" />
+    <Compile Remove="SwipePage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="ListEntryPage.xaml" />
     <EmbeddedResource Remove="ListPage.xaml" />
+    <EmbeddedResource Remove="SwipePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,10 +37,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="LineChartPage.xaml.cs">
+      <DependentUpon>LineChartPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="BarChartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="ChartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LineChartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
