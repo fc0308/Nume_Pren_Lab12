@@ -16,9 +16,9 @@ namespace Nume_Pren_Lab12
         {
             Database = new ShoppingListDatabase(new RestService());
 
-             MainPage = new NavigationPage(new ChartPage());
+           //  MainPage = new NavigationPage(new ChartPage());
 
-        /*    List<ContentPage> pgs = new List<ContentPage>();
+           List<ContentPage> pgs = new List<ContentPage>();
             pgs.Add(new BarChartPage());
             pgs.Add(new LineChartPage());
             var pg = new CarouselPage
@@ -29,7 +29,7 @@ namespace Nume_Pren_Lab12
          }
             };
             MainPage = pg;
-        */
+        
             
         }
 
